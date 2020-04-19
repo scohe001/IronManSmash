@@ -13,7 +13,8 @@ import { MatSortModule, MatInputModule, MatButtonModule, MatSelectModule,
           MatListModule, MatGridListModule, MatCardModule, 
           MatFormFieldModule, MatAutocompleteModule, MatTooltipModule,
           MatDialogModule, MatStepperModule, MatNativeDateModule,
-          MatSnackBarModule,} from '@angular/material';
+          MatSnackBarModule,
+          MatCheckboxModule,} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import { MatSortModule, MatInputModule, MatButtonModule, MatSelectModule,
     MatStepperModule,
     MatNativeDateModule,
     MatSnackBarModule,
-    
+    MatCheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

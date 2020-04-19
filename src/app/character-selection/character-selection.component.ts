@@ -7,7 +7,7 @@ import { Character, CHAR_LIST } from '../char_list';
   styleUrls: ['./character-selection.component.css']
 })
 export class CharacterSelectionComponent implements OnInit {
-  fighters: Character[] = CHAR_LIST;
+  fighters: Character[] = CHAR_LIST.slice();
   selected: Character[] = [];
 
   filterVal: string = "";
@@ -40,7 +40,7 @@ export class CharacterSelectionComponent implements OnInit {
   }
 
   public selectAll() {
-    this.selected = CHAR_LIST;
+    this.selected = CHAR_LIST.slice();
   }
 
   public applyFilter() {
@@ -48,12 +48,12 @@ export class CharacterSelectionComponent implements OnInit {
 
     if(!this.filterVal) {
       this.filterVal = "";
-      this.fighters = CHAR_LIST;
+      this.fighters = CHAR_LIST.slice();
       return;
     }
 
     let clean_fitler_val: string = this.filterVal.trim().toLocaleLowerCase();
-    this.fighters = this.fighters.filter(fighter => fighter.name.toLocaleLowerCase().includes(clean_fitler_val));
+    this.fighters = CHAR_LIST.filter(fighter => fighter.name.toLocaleLowerCase().includes(clean_fitler_val));
   }
 
   public selectedStr() {
