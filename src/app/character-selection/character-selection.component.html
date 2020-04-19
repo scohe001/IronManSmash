@@ -67,7 +67,10 @@
 </div>
 
 <mat-toolbar-row class="footer" *ngIf="selected && selected.length > 0">
+    <!--
   <img (click)="readyClicked()" src="/assets/ready_to_fight.png" class="ready-to-fight">
+    -->
+  <button mat-button class="ready-to-fight-btn" (click)="readyClicked()">READY TO FIGHT!</button>
 </mat-toolbar-row>
 
 <!--

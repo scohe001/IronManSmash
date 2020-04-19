@@ -205,6 +205,16 @@ li {
     filter: grayscale(0) brightness(125%) saturate(150%);
 }
 
+.ready-to-fight-btn {
+    height: 100%;
+    width: 100%;
+    font-size: 24px;
+}
+
+.ready-to-fight-btn:hover {
+    background-color: lightblue;
+}
+
 .content-item {
     margin: 10px;
 }
@@ -225,10 +235,10 @@ html {
   /* Set the fixed height of the footer here */
   height: 100px;
   line-height: 100px;
-  /*
   background-color: #f5f5f5;
-  */
+  /*
   background-color: rgba(256,256,256,0.5);
+  */
   position: fixed;
   z-index: 10;
 }
