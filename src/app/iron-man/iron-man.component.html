@@ -1,8 +1,51 @@
-<div class="fighter-list">
-  <div *ngFor="let fighter of selected; index as i" class="fighter-item">
-      <span>{{i + 1}}. {{commonManager.toTitleCase(fighter.name)}} ({{fighter.num}})</span>
-      <br>
+<div class="main-content">
+
+<br>
+<h2>Current ({{currentIndx + 1}}/{{selected.length}})</h2>
+<!--
+<span> {{commonManager.toTitleCase(currentFighter.name)}} ({{currentFighter.num}})</span>
+-->
+
+<a class="fighter-list__btn">
+<!--
+  <div class="fighter-list__mark"><i><svg role="img" title=""><use xlink:href="/assets_v2/img/common/sprite.svg#m_mario"></use></svg></i></div>
+-->
+  <div
+    class="fighter-list__img fighter-list__img-selected"
+    [style.background-image]="'url(https://www.smashbros.com'+currentFighter.img_link+')'"></div>
+
+  <p class="fighter-list__num"><em class="fighter-list__num-txt">{{currentFighter.num}}<span class="fighter-list__num-ico"></span></em></p>
+
+  <div class="fighter-list__name">
+    <p class="fighter-list__name-main">{{currentFighter.name}}</p>
+  </div>
+</a>
+
+<br>
+<button mat-button (click)="lastFighter()">Last</button>
+<button mat-button (click)="nextFighter()">Next</button>
+<br>
+
+<div class="fighter-lists">
+  <div class="flist">
+    <h2>Used:</h2>
+    <ol reversed>
+      <li *ngFor="let fighter of used" class="fighter-item">
+          <span> {{commonManager.toTitleCase(fighter.name)}} ({{fighter.num}})</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="flist">
+    <h2>Up Next:</h2>
+    <ol [start]="currentIndx + 1">
+      <li *ngFor="let fighter of upNext; index as i" class="fighter-item">
+          <span> {{commonManager.toTitleCase(fighter.name)}} ({{fighter.num}})</span>
+      </li>
+    </ol>
   </div>
 </div>
 
 <span class="code-val"> Your code is: {{encodedFighters}} </span>
+
+</div>

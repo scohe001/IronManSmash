@@ -12,6 +12,12 @@ import { CommonService } from '../services/common.service';
 export class IronManComponent implements OnInit {
 
   public selected: Character[] = [];
+  public used: Character[] = [];
+  public upNext: Character[] = [];
+
+  public currentFighter: Character = null;
+  public currentIndx: number = 0;
+
   public encodedFighters: string = "";
 
   constructor(
@@ -31,6 +37,27 @@ export class IronManComponent implements OnInit {
     }
 
     this.selected = decodedFighters;
+    this.used = [];
+    this.upNext = this.selected.slice(1);
+    this.currentIndx = 0;
+    this.currentFighter = this.selected[0];
+  }
+
+  public nextFighter() {
+    if(this.currentIndx + 1 >= this.selected.length) { return; }
+
+    this.currentFighter = this.selected[++this.currentIndx];
+    this.used = this.selected.slice(0, this.currentIndx).reverse();
+    this.upNext = this.selected.slice(this.currentIndx + 1);
+  }
+
+  public lastFighter() {
+    if(this.currentIndx <= 0) { return; }
+
+    this.currentFighter = this.selected[--this.currentIndx];
+    this.used = this.selected.slice(0, this.currentIndx).reverse();
+    this.upNext = this.selected.slice(this.currentIndx + 1);
+
   }
 
 }
