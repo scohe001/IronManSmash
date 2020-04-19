@@ -15,11 +15,13 @@ import { MatSortModule, MatInputModule, MatButtonModule, MatSelectModule,
           MatDialogModule, MatStepperModule, MatNativeDateModule,
           MatSnackBarModule,
           MatCheckboxModule,} from '@angular/material';
+import { IronManComponent } from './iron-man/iron-man.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CharacterSelectionComponent
+    CharacterSelectionComponent,
+    IronManComponent
   ],
   imports: [
     BrowserModule,

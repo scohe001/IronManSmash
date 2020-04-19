@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Character, CHAR_LIST } from '../char_list';
+import { FighterEncodingService } from '../services/fighter-encoding.service';
+import { Router } from '@angular/router';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-character-selection',
@@ -9,10 +12,15 @@ import { Character, CHAR_LIST } from '../char_list';
 export class CharacterSelectionComponent implements OnInit {
   fighters: Character[] = CHAR_LIST.slice();
   selected: Character[] = [];
+  mousedOver: Character[] = [];
 
   filterVal: string = "";
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private fighterEncodingManager: FighterEncodingService,
+    private commonManager: CommonService,
+  ) { }
 
   ngOnInit() {
     console.log(this.fighters);
@@ -21,13 +29,13 @@ export class CharacterSelectionComponent implements OnInit {
   public fighterClicked(fighter: Character) {
     if(!this.isSelected(fighter)) {
       this.selected.push(fighter);
-      console.log("Added!");
+      // console.log("Added!");
     } else {
       let indx = this.selected.indexOf(fighter);
       this.selected.splice(indx, 1);
-      console.log("Removed!");
+      // console.log("Removed!");
     }
-    console.log("Clicked!", this.selected);
+    // console.log("Clicked!", this.selected);
   }
 
   public isSelected(fighter: Character): boolean {
@@ -57,15 +65,29 @@ export class CharacterSelectionComponent implements OnInit {
   }
 
   public selectedStr() {
-    return this.selected.map(fighter => this.toTitleCase(fighter.name)).sort().join(", ");
-  }
-
-  private toTitleCase(str: string) {
-    return str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+    return this.selected.map(fighter => this.commonManager.toTitleCase(fighter.name)).sort().join(", ");
   }
 
   public checkClicked(event: MouseEvent, fighter: Character) {
     event.preventDefault(); // Prevent user from interacting with checkbox directly
   }
 
+  public buttonMousedOver(fighter: Character, isMouseIn: boolean) {
+    if(isMouseIn && !this.isMousedOver(fighter)) {
+      this.mousedOver.push(fighter);
+    } else if(!isMouseIn && this.isMousedOver(fighter)) {
+      let indx = this.mousedOver.indexOf(fighter);
+      this.mousedOver.splice(indx, 1);
+    }
+  }
+
+  public isMousedOver(fighter: Character): boolean {
+    return this.mousedOver.includes(fighter);
+  }
+
+  public readyClicked() {
+    let shuffledFighters = this.commonManager.shuffle(this.selected);
+    let encodedFighters: string = this.fighterEncodingManager.encodeList(shuffledFighters);
+    this.router.navigate(['/IronMan', encodedFighters]);
+  }
 }

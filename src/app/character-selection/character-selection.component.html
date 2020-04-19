@@ -1,45 +1,67 @@
-<h1>Fighter List</h1>
+<div class="main-content" [ngClass]="{'main-content-with-footer': selected && selected.length > 0}">
+  <h1>Fighter List</h1>
+  
+  <mat-form-field class="content-item">
+    <mat-label>Filter</mat-label>
+    <input [(ngModel)]="filterVal" matInput (keyup)="applyFilter()" placeholder="Ex. Joker">
+  
+    <button mat-icon-button
+        *ngIf="filterVal && filterVal != null && filterVal.length > 0"
+        mat-stroked-button
+        matSuffix
+        matTooltip="Clear Selection"
+        color="primary"
+        class="icon-but"
+        (click)="clearSelection()">
+        <mat-icon aria-hidden="false" aria-label="Clear Selection">clear</mat-icon>
+    </button>
+  </mat-form-field>
+  
+  <br>
+  <span>Selected: [{{selectedStr()}}]</span>
+  <br>
+  <button mat-button (click)="selectAll()">Select All</button>
+  <button mat-button (click)="selected = []">Select None</button>
+  
+  <ul class="fighter-list">
+    <li 
+      class="fighter-list__item" 
+      *ngFor="let fighter of fighters"
+      (mouseenter)="buttonMousedOver(fighter, true)"
+      (mouseleave)="buttonMousedOver(fighter, false)">
+      <a class="fighter-list__btn" (click)="fighterClicked(fighter)">
+      <!--
+        <div class="fighter-list__mark"><i><svg role="img" title=""><use xlink:href="/assets_v2/img/common/sprite.svg#m_mario"></use></svg></i></div>
+      -->
+        <div
+          class="fighter-list__img"
+          [style.background-image]="'url(https://www.smashbros.com'+fighter.img_link+')'"
+          [ngClass]="{'fighter-list__img-selected': isSelected(fighter), 'fighter-list__img-unselected': !isSelected(fighter), 'fighter-list__img-highlight-unselected': isMousedOver(fighter) && !isSelected(fighter)}"></div>
+  
+        <mat-checkbox [ngModel]="isSelected(fighter)" class="fighter-list__check" (click)="checkClicked($event, fighter)"></mat-checkbox>
+  
+        <p class="fighter-list__num"><em class="fighter-list__num-txt">{{fighter.num}}<span class="fighter-list__num-ico"></span></em></p>
+  
+        <div class="fighter-list__name">
+          <p class="fighter-list__name-main">{{fighter.name}}</p>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>
 
-<mat-form-field class="content-item">
-  <mat-label>Filter</mat-label>
-  <input [(ngModel)]="filterVal" matInput (keyup)="applyFilter()" placeholder="Ex. Joker">
+<mat-toolbar-row class="footer" *ngIf="selected && selected.length > 0">
+  <img (click)="readyClicked()" src="../../assets/ready_to_fight.png" class="ready-to-fight">
+</mat-toolbar-row>
 
-  <button mat-icon-button
-      *ngIf="filterVal && filterVal != null && filterVal.length > 0"
-      mat-stroked-button
-      matSuffix
-      matTooltip="Clear Selection"
-      color="primary"
-      class="icon-but"
-      (click)="clearSelection()">
-      <mat-icon aria-hidden="false" aria-label="Clear Selection">clear</mat-icon>
-  </button>
-</mat-form-field>
+<!--
+    <div class="router-content">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
 
-<br>
-<span>Selected: [{{selectedStr()}}]</span>
-<br>
-<button mat-button (click)="selectAll()">Select All</button>
-<button mat-button (click)="selected = []">Select None</button>
+    <div class="space-taker"></div>
 
-<ul class="fighter-list">
-  <li class="fighter-list__item" *ngFor="let fighter of fighters">
-    <a class="fighter-list__btn" (click)="fighterClicked(fighter)">
-    <!--
-      <div class="fighter-list__mark"><i><svg role="img" title=""><use xlink:href="/assets_v2/img/common/sprite.svg#m_mario"></use></svg></i></div>
-    -->
-      <div
-        class="fighter-list__img"
-        [style.background-image]="'url(https://www.smashbros.com'+fighter.img_link+')'"
-        [ngClass]="{'fighter-list__img-selected': isSelected(fighter), 'fighter-list__img-unselected': !isSelected(fighter)}"></div>
-
-      <mat-checkbox [ngModel]="isSelected(fighter)" class="fighter-list__check" (click)="checkClicked($event, fighter)"></mat-checkbox>
-
-      <p class="fighter-list__num"><em class="fighter-list__num-txt">{{fighter.num}}<span class="fighter-list__num-ico"></span></em></p>
-
-      <div class="fighter-list__name">
-        <p class="fighter-list__name-main">{{fighter.name}}</p>
-      </div>
-    </a>
-  </li>
-</ul>
+    <footer class="footer">
+      <p class="footer-right"> Credit Cache {{versionNum}} </p>
+    </footer>
+-->
