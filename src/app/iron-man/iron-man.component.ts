@@ -18,7 +18,7 @@ export class IronManComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private fighterEncodingManager: FighterEncodingService,
-    private commonManager: CommonService,
+    public commonManager: CommonService,
   ) { }
 
   ngOnInit() {
