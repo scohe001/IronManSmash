@@ -1,7 +1,8 @@
-<div *ngFor="let fighter of selected; index as i">
-    <span>{{i + 1}}. {{commonManager.toTitleCase(fighter.name)}} ({{fighter.num}})</span>
-    <br>
+<div class="fighter-list">
+  <div *ngFor="let fighter of selected; index as i" class="fighter-item">
+      <span>{{i + 1}}. {{commonManager.toTitleCase(fighter.name)}} ({{fighter.num}})</span>
+      <br>
+  </div>
 </div>
 
-<br><br>
-<span> Your code is: {{encodedFighters}} </span>
+<span class="code-val"> Your code is: {{encodedFighters}} </span>
