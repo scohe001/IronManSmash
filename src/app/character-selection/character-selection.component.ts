@@ -15,6 +15,7 @@ export class CharacterSelectionComponent implements OnInit {
   mousedOver: Character[] = [];
 
   filterVal: string = "";
+  codeVal: string = "";
 
   constructor(
     private router: Router,
@@ -89,5 +90,15 @@ export class CharacterSelectionComponent implements OnInit {
     let shuffledFighters = this.commonManager.shuffle(this.selected);
     let encodedFighters: string = this.fighterEncodingManager.encodeList(shuffledFighters);
     this.router.navigate(['/IronMan', encodedFighters]);
+  }
+
+  public goWithCode() {
+    console.log(this.codeVal);
+    if(!this.fighterEncodingManager.decodeList(this.codeVal)) {
+      alert("ERROR: Bad Code");
+      return;
+    }
+
+    this.router.navigate(['/IronMan', this.codeVal]);
   }
 }

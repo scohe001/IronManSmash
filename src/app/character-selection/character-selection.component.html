@@ -16,6 +16,22 @@
         <mat-icon aria-hidden="false" aria-label="Clear Selection">clear</mat-icon>
     </button>
   </mat-form-field>
+
+  <mat-form-field class="content-item">
+    <mat-label>Already Have a Code?</mat-label>
+    <input [(ngModel)]="codeVal" matInput placeholder="Ex. TiMdQjEkIBswEAAFTEQTOU">
+  
+    <button mat-button
+        *ngIf="codeVal"
+        mat-stroked-button
+        matSuffix
+        matTooltip="Go!"
+        color="primary"
+        class="code-go-btn"
+        (click)="goWithCode()">
+        Go!
+    </button>
+  </mat-form-field>
   
   <br>
   <span>Selected: [{{selectedStr()}}]</span>

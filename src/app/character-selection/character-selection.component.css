@@ -121,18 +121,20 @@
     z-index: 3;
 }
 
-@media (min-width: 980px)
-.fighter-list__num-txt {
-    font-size: 30px;
+@media (min-width: 980px) {
+  .fighter-list__num-txt {
+      font-size: 30px;
+  }
 }
 
 .fighter-list__num-ico {
     display: inline-block;
 }
 
-@media (min-width: 980px)
-.fighter-list__name {
-    left: 70px;
+@media (min-width: 980px) {
+  .fighter-list__name {
+      left: 70px;
+  }
 }
 
 .fighter-list__name {
@@ -201,6 +203,10 @@ li {
 .ready-to-fight:hover {
     -webkit-filter: grayscale(0) brightness(125%) saturate(150%);
     filter: grayscale(0) brightness(125%) saturate(150%);
+}
+
+.content-item {
+    margin: 10px;
 }
 
 /* Sticky footer styles
