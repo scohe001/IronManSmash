@@ -62,6 +62,10 @@ export class CharacterSelectionComponent implements OnInit {
 
   private toTitleCase(str: string) {
     return str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
-}
+  }
+
+  public checkClicked(event: MouseEvent, fighter: Character) {
+    event.preventDefault(); // Prevent user from interacting with checkbox directly
+  }
 
 }

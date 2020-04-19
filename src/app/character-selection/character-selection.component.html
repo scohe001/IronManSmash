@@ -33,7 +33,7 @@
         [style.background-image]="'url(https://www.smashbros.com'+fighter.img_link+')'"
         [ngClass]="{'fighter-list__img-selected': isSelected(fighter), 'fighter-list__img-unselected': !isSelected(fighter)}"></div>
 
-      <mat-checkbox [ngModel]="isSelected(fighter)" class="fighter-list__check"></mat-checkbox>
+      <mat-checkbox [ngModel]="isSelected(fighter)" class="fighter-list__check" (click)="checkClicked($event, fighter)"></mat-checkbox>
 
       <p class="fighter-list__num"><em class="fighter-list__num-txt">{{fighter.num}}<span class="fighter-list__num-ico"></span></em></p>
 
