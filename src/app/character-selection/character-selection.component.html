@@ -31,7 +31,7 @@
       <div
         class="fighter-list__img"
         [style.background-image]="'url(https://www.smashbros.com'+fighter.img_link+')'"
-        [ngClass]="{'fighter-list__img-selected': isSelected(fighter)}"></div>
+        [ngClass]="{'fighter-list__img-selected': isSelected(fighter), 'fighter-list__img-unselected': !isSelected(fighter)}"></div>
         <p class="fighter-list__num"><em class="fighter-list__num-txt">{{fighter.num}}<span class="fighter-list__num-ico"></span></em></p>
       <div class="fighter-list__name">
         <p class="fighter-list__name-main">{{fighter.name}}</p>
