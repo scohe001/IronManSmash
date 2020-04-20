@@ -38,7 +38,7 @@
 
   <div class="flist">
     <h2>Up Next:</h2>
-    <ol [start]="currentIndx + 1">
+    <ol [start]="currentIndx + 2">
       <li *ngFor="let fighter of upNext; index as i" class="fighter-item">
           <span> {{commonManager.toTitleCase(fighter.name)}} ({{fighter.num}})</span>
       </li>

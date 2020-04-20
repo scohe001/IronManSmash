@@ -34,10 +34,22 @@
   </mat-form-field>
   
   <br>
+  <!--
   <span>Selected: [{{selectedStr()}}]</span>
   <br>
-  <button mat-button (click)="selectAll()">Select All</button>
-  <button mat-button (click)="selected = []">Select None</button>
+  -->
+  <button mat-stroked-button mat-button (click)="selectAll()">Select All</button>
+  <button mat-button mat-stroked-button (click)="selected = []">Select None</button>
+  <br>
+  <span> or... </span>
+  <br>
+  <button mat-button mat-stroked-button (click)="selectRandom()">Select Random Set</button>
+  <span> of </span>
+  <mat-form-field>
+    <mat-label></mat-label>
+    <input type="number" matInput placeholder="Ex. 15" value="15" [(ngModel)]="randomSetNum">
+  </mat-form-field>
+  <span> characters </span>
   
   <ul class="fighter-list">
     <li 

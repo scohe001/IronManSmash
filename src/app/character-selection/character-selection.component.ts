@@ -16,6 +16,7 @@ export class CharacterSelectionComponent implements OnInit {
 
   filterVal: string = "";
   codeVal: string = "";
+  randomSetNum: number = 15;
 
   constructor(
     private router: Router,
@@ -50,6 +51,17 @@ export class CharacterSelectionComponent implements OnInit {
 
   public selectAll() {
     this.selected = CHAR_LIST.slice();
+  }
+
+  public selectRandom() {
+    if(this.randomSetNum <= 0) {
+      return;
+    }
+
+    this.selectAll(); // Give selected all characters
+    this.selected = this.commonManager.shuffle(this.selected); // shuffle
+    this.selected = this.selected.slice(0, this.randomSetNum); // Take first set num of them
+    this.readyClicked(); // Go!
   }
 
   public applyFilter() {
